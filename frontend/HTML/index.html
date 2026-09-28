@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royalty Accounting System</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">  
+<div class="brand">
+    <div class="brand-mark">
+        <span>R</span>
+        <i></i>
+    </div>
+
+    <div class="brand-text">
+        <strong>Roya<span>Link</span></strong>
+        <small>Royalty Accounting System</small>
+    </div>
+</div>
+
+        <nav>
+            <button class="nav-btn active" data-page="dashboard">Dashboard</button>
+            <button class="nav-btn" data-page="penulis">Penulis</button>
+            <button class="nav-btn" data-page="buku">Buku</button>
+            <button class="nav-btn" data-page="royalty">Royalty</button>
+            <button class="nav-btn" data-page="laporan">Laporan</button>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p>Sistem Informasi Akuntansi Perhitungan dan Pembayaran Royalty</p>
+            </div>
+            <span id="connectionStatus" class="status-pill">Checking...</span>
+        </header>
+
+        <section id="dashboardPage" class="page active">
+            <div class="cards">
+                <div class="card"><span>Total Penulis</span><strong id="totalPenulis">0</strong></div>
+                <div class="card"><span>Total Buku</span><strong id="totalBuku">0</strong></div>
+                <div class="card"><span>Royalty Belum Dibayar</span><strong id="belumBayar">Rp0</strong></div>
+                <div class="card"><span>Royalty Sudah Dibayar</span><strong id="sudahBayar">Rp0</strong></div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>Royalty Terbaru</h2>
+                    <button class="btn secondary" onclick="showPage('royalty')">Lihat Semua</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Periode</th><th>Penulis</th><th>Buku</th><th>Royalty</th><th>Status</th></tr></thead>
+                        <tbody id="dashboardRoyalty"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="penulisPage" class="page">
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>Data Penulis</h2>
+                    <button class="btn primary" onclick="openPenulisModal()">+ Tambah Penulis</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Nama</th><th>Email</th><th>No. HP</th><th>Aksi</th></tr></thead>
+                        <tbody id="penulisTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="bukuPage" class="page">
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>Data Buku</h2>
+                    <button class="btn primary" onclick="openBukuModal()">+ Tambah Buku</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Judul</th><th>Penulis</th><th>Harga</th><th>Royalty</th><th>Terbit</th><th>Aksi</th></tr></thead>
+                        <tbody id="bukuTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="royaltyPage" class="page">
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>Perhitungan & Pembayaran Royalty</h2>
+                    <button class="btn primary" onclick="openRoyaltyModal()">+ Tambah Royalty</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Periode</th><th>Penulis</th><th>Buku</th><th>Terjual</th><th>Penjualan</th><th>Royalty</th><th>Status</th><th>Aksi</th></tr></thead>
+                        <tbody id="royaltyTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="laporanPage" class="page">
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>Laporan Royalty</h2>
+                    <button class="btn secondary" onclick="window.print()">Cetak</button>
+                </div>
+                <div class="filters">
+                    <input type="month" id="filterPeriode" onchange="loadLaporan()">
+                    <select id="filterStatus" onchange="loadLaporan()">
+                        <option value="">Semua Status</option>
+                        <option value="BELUM DIBAYAR">Belum Dibayar</option>
+                        <option value="DIBAYAR">Dibayar</option>
+                    </select>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Periode</th><th>Penulis</th><th>Buku</th><th>Terjual</th><th>Total Penjualan</th><th>Royalty</th><th>Status</th></tr></thead>
+                        <tbody id="laporanTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- Modal Penulis -->
+<div class="modal" id="penulisModal">
+    <div class="modal-box">
+        <div class="modal-header"><h2 id="penulisModalTitle">Tambah Penulis</h2><button onclick="closeModal('penulisModal')">×</button></div>
+        <form id="penulisForm">
+            <input type="hidden" id="penulisId">
+            <label>Nama Penulis<input id="namaPenulis" required></label>
+            <label>Email<input type="email" id="emailPenulis"></label>
+            <label>No. HP<input id="noHpPenulis"></label>
+            <button class="btn primary full">Simpan</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Buku -->
+<div class="modal" id="bukuModal">
+    <div class="modal-box">
+        <div class="modal-header"><h2 id="bukuModalTitle">Tambah Buku</h2><button onclick="closeModal('bukuModal')">×</button></div>
+        <form id="bukuForm">
+            <input type="hidden" id="bukuId">
+            <label>Penulis<select id="bukuPenulis" required></select></label>
+            <label>Judul Buku<input id="judulBuku" required></label>
+            <label>Harga Jual<input type="number" id="hargaJual" min="0" required></label>
+            <label>Persentase Royalty (%)<input type="number" id="persentaseRoyalty" min="0" max="100" step="0.01" required></label>
+            <label>Tanggal Terbit<input type="date" id="tanggalTerbit"></label>
+            <button class="btn primary full">Simpan</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Royalty -->
+<div class="modal" id="royaltyModal">
+    <div class="modal-box">
+        <div class="modal-header"><h2>Tambah Royalty</h2><button onclick="closeModal('royaltyModal')">×</button></div>
+        <form id="royaltyForm">
+            <label>Buku<select id="royaltyBuku" required></select></label>
+            <label>Periode<input type="month" id="periodeRoyalty" required></label>
+            <label>Jumlah Terjual<input type="number" id="jumlahTerjual" min="0" required></label>
+            <div class="calculation">
+                <div><span>Harga Jual</span><strong id="previewHarga">Rp0</strong></div>
+                <div><span>Royalty</span><strong id="previewPersen">0%</strong></div>
+                <div><span>Total Penjualan</span><strong id="previewPenjualan">Rp0</strong></div>
+                <div><span>Nominal Royalty</span><strong id="previewRoyalty">Rp0</strong></div>
+            </div>
+            <button class="btn primary full">Simpan Royalty</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../JS/config.js"></script>
+<script src="../JS/supabase.js"></script>
+<script src="../JS/app.js"></script>
+</body>
+</html>
