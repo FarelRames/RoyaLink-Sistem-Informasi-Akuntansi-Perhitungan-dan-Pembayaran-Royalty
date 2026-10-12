@@ -1,8 +1,29 @@
-# Royalty Accounting System
+# RoyaLink — Sistem Informasi Akuntansi Royalti Buku
+Tentang Sistem:
+RoyaLink adalah aplikasi berbasis web yang dirancang untuk membantu usaha penerbitan buku dalam mengelola data penulis, data buku, perhitungan royalti, serta pencatatan pembayaran royalti secara terstruktur dan terintegrasi.
 
-Web app sederhana untuk Sistem Informasi Akuntansi Perhitungan dan Pembayaran Royalty pada Usaha Penerbitan Buku.
+Sistem ini menggunakan Supabase sebagai database untuk menyimpan dan mengelola data, serta menyediakan antarmuka yang memudahkan pengguna dalam memantau informasi royalti dan menyusun laporan.
 
-## Teknologi
+# Akses Aplikasi
+
+Live Demo: [Klik untuk membuka live demo](https://farelrames.github.io/RoyaLink-Sistem-Informasi-Akuntansi-Perhitungan-dan-Pembayaran-Royalty/)
+
+# Fitur Utama
+Dashboard — Menampilkan ringkasan informasi dan status pembayaran royalti.
+
+Manajemen Penulis — Mengelola data penulis, termasuk nama, email, dan nomor telepon.
+
+Manajemen Buku — Mengelola informasi buku, harga jual, persentase royalti, dan tanggal terbit.
+
+Perhitungan Royalti — Mencatat jumlah buku terjual, total penjualan, nominal royalti, dan periode perhitungan.
+
+Pembayaran Royalti — Mencatat status pembayaran dan tanggal pembayaran royalti.
+
+Laporan Royalti — Menampilkan rekapitulasi royalti berdasarkan data penulis, buku, periode, dan status pembayaran.
+
+Cetak Laporan — Mendukung pencetakan laporan untuk keperluan dokumentasi dan administrasi.
+
+## Teknologi yang digunakan
 - Frontend: HTML, CSS, JavaScript
 - Backend/database: Supabase
 - DBMS: PostgreSQL
@@ -31,6 +52,3 @@ frontend/
 5. Salin Project URL dan publishable/anon key.
 6. Masukkan ke `frontend/JS/config.js`.
 7. Jalankan `frontend/HTML/index.html` menggunakan local server (disarankan VS Code Live Server).
-
-## Catatan keamanan
-Versi ini adalah MVP untuk tugas kuliah. Jika aplikasi dipublikasikan, aktifkan Row Level Security (RLS), buat policy yang sesuai, dan jangan pernah menaruh service_role key di frontend.
