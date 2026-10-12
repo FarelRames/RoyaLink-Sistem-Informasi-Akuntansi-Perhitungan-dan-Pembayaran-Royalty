@@ -1,4 +1,4 @@
-# RoyaLink — Sistem Informasi Akuntansi Royalti Buku
+# RoyaLink - Sistem Informasi Akuntansi Royalti Buku
 Tentang Sistem:
 RoyaLink adalah aplikasi berbasis web yang dirancang untuk membantu usaha penerbitan buku dalam mengelola data penulis, data buku, perhitungan royalti, serta pencatatan pembayaran royalti secara terstruktur dan terintegrasi.
 
